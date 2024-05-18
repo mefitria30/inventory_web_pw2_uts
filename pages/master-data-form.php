@@ -11,6 +11,7 @@
     $jumlah_barang      = '';
     $satuan_barang      = '';
     $harga_beli         = '';
+    $status_barang      = '';
     
     if($action == 'edit') {
         $id_barang  = $_GET['id_barang'];
@@ -26,8 +27,45 @@
             $jumlah_barang      = $getData['jumlah_barang'];
             $satuan_barang      = $getData['satuan_barang'];
             $harga_beli         = $getData['harga_beli'];
+            $status_barang      = $getData['status_barang'];
         } else {
             $failed     = 'Data not found';
+        }
+    }
+
+    if(isset($_POST['submit'])) {
+        $id_barang          = $_POST['id_barang'];
+        $kode_barang        = $_POST['kode_barang'];
+        $nama_barang        = $_POST['nama_barang'];
+        $jumlah_barang      = $_POST['jumlah_barang'];
+        $satuan_barang      = $_POST['satuan_barang'];
+        $harga_beli         = $_POST['harga_beli'];
+
+        if ($kode_barang && $nama_barang && $jumlah_barang && $satuan_barang && harga_beli) {
+            if($action == 'edit') {
+                $sqlUpdateProcess = "update mahasiswa set
+                    nim = '$nim',
+                    nama= '$nama',
+                    alamat = '$alamat',
+                    fakultas = '$fakultas'
+                    where id = '$id'
+                ";
+                $startUpdateProcess = mysqli_query($conn, $sqlUpdateProcess);
+
+                header("location:".BASE_URL."index.php?page=master-data");
+            } else {
+                $sqlInsert  = "insert into mahasiswa (
+                    nim, nama, alamat, fakultas
+                ) values (
+                    '$nim', '$nama', '$alamat', '$fakultas'
+                )";
+
+                $startInsert = mysqli_query($conn, $sqlInsert);
+
+                header("location:".BASE_URL."index.php?page=master-data");
+            }
+        } else {
+            $failed = "Please completed the form";
         }
     }
 ?>
@@ -35,8 +73,6 @@
 <div class="container-fluid">
 
     <!-- Page Heading -->
-
-
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-4 text-gray-800">Master Data Form</h1>
         <a href="<?php echo BASE_URL."index.php?page=master-data";?>"
@@ -45,7 +81,7 @@
             Back</a>
     </div>
 
-    <form>
+    <form action="" method="POST">
         <div class="form-group">
             <label for="id_barang">ID Barang:</label>
             <input type="number" class="form-control" id="id_barang" name="id_barang" value="<?php echo $id_barang ?>"
@@ -96,12 +132,12 @@
         <div class="form-group">
             <label for="status_barang">Status Barang:</label>
             <select class="form-control" id="status_barang" name="status_barang">
-                <option value="tersedia">Tersedia</option>
-                <option value="tidak-tersedia">Tidak Tersedia</option>
+                <option value="tersedia" <?php if($status_barang != 0) echo "selected"; ?>>Tersedia</option>
+                <option value="tidak-tersedia" <?php if($status_barang == 0) echo "selected"; ?>>Tidak Tersedia</option>
             </select>
         </div>
 
-        <input type="submit" class="btn btn-primary" value="Simpan">
+        <button type="submit" name="submit" value="submit" class="btn btn-primary">Simpan</button>
     </form>
 
 </div>
