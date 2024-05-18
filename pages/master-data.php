@@ -67,10 +67,9 @@ ob_start();
                         <td><?php echo $row["harga_beli"]?></td>
                         <td><?php echo $status_barang?></td>
                         <td>
-                            <a href="<?php echo BASE_URL."index.php?page=master-data&action=edit&id_barang=".$row["id_barang"];?>"
+                            <a href="<?php echo BASE_URL."index.php?page=master-data-form&action=edit&id_barang=".$row["id_barang"];?>"
                                 <button type="button" class="btn btn-warning btn-sm">Edit</button>
                             </a>
-
 
                             <a href="<?php echo BASE_URL."index.php?page=master-data&action=delete&id_barang=".$row["id_barang"];?>"
                                 onclick="
