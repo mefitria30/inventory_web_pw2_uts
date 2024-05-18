@@ -28,8 +28,6 @@
             $satuan_barang      = $getData['satuan_barang'];
             $harga_beli         = $getData['harga_beli'];
             $status_barang      = $getData['status_barang'];
-        } else {
-            $failed     = 'Data not found';
         }
     }
 
@@ -40,8 +38,9 @@
         $jumlah_barang      = $_POST['jumlah_barang'];
         $satuan_barang      = $_POST['satuan_barang'];
         $harga_beli         = $_POST['harga_beli'];
+        $status_barang      = $_POST['status_barang'];
 
-        if ($kode_barang && $nama_barang && $jumlah_barang && $satuan_barang && harga_beli) {
+        if ($kode_barang && $nama_barang && $jumlah_barang && $satuan_barang) {
             if($action == 'edit') {
                 $sqlUpdateProcess = "update mahasiswa set
                     nim = '$nim',
@@ -54,18 +53,16 @@
 
                 header("location:".BASE_URL."index.php?page=master-data");
             } else {
-                $sqlInsert  = "insert into mahasiswa (
-                    nim, nama, alamat, fakultas
+                $sqlInsert  = "insert into master_data (
+                    kode_barang, nama_barang, jumlah_barang, satuan_barang, harga_beli, status_barang
                 ) values (
-                    '$nim', '$nama', '$alamat', '$fakultas'
+                    '$kode_barang', '$nama_barang', '$jumlah_barang', '$satuan_barang', '$harga_beli', '$status_barang'
                 )";
 
                 $startInsert = mysqli_query($conn, $sqlInsert);
 
                 header("location:".BASE_URL."index.php?page=master-data");
             }
-        } else {
-            $failed = "Please completed the form";
         }
     }
 ?>
@@ -125,8 +122,8 @@
         <div class="form-group">
             <label for="status_barang">Status Barang:</label>
             <select class="form-control" id="status_barang" name="status_barang">
-                <option value="tersedia" <?php if($status_barang == 1) echo "selected"; ?>>Tersedia</option>
-                <option value="tidak-tersedia" <?php if($status_barang == 0) echo "selected"; ?>>Tidak Tersedia
+                <option value="1" <?php if($status_barang == 1) echo "selected"; ?>>Tersedia</option>
+                <option value="0" <?php if($status_barang == 0) echo "selected"; ?>>Tidak Tersedia
                 </option>
             </select>
         </div>
