@@ -83,9 +83,8 @@
 
     <form action="" method="POST">
         <div class="form-group">
-            <label for="id_barang">ID Barang:</label>
-            <input type="number" class="form-control" id="id_barang" name="id_barang" value="<?php echo $id_barang ?>"
-                required>
+            <input type="hidden" class="form-control" id="id_barang" name="id_barang" value="<?php echo $id_barang ?>"
+                required readonly>
         </div>
 
         <div class="form-group">
@@ -114,12 +113,6 @@
                 <option value="pcs" <?php if($satuan_barang == "pcs") echo "selected"; ?>>Pcs</option>
                 <option value="liter" <?php if($satuan_barang == "liter") echo "selected"; ?>>Liter</option>
                 <option value="meter" <?php if($satuan_barang == "meter") echo "selected"; ?>>Meter</option>
-                <option value="S" <?php if($satuan_barang == "S") echo "selected"; ?>>S</option>
-                <option value="M" <?php if($satuan_barang == "M") echo "selected"; ?>>M</option>
-                <option value="L" <?php if($satuan_barang == "L") echo "selected"; ?>>L</option>
-                <option value="XL" <?php if($satuan_barang == "XL") echo "selected"; ?>>XL</option>
-                <option value="XS" <?php if($satuan_barang == "XS") echo "selected"; ?>>XS</option>
-                <option value="3XL" <?php if($satuan_barang == "3XL") echo "selected"; ?>>3XL</option>
             </select>
         </div>
 
@@ -132,8 +125,9 @@
         <div class="form-group">
             <label for="status_barang">Status Barang:</label>
             <select class="form-control" id="status_barang" name="status_barang">
-                <option value="tersedia" <?php if($status_barang != 0) echo "selected"; ?>>Tersedia</option>
-                <option value="tidak-tersedia" <?php if($status_barang == 0) echo "selected"; ?>>Tidak Tersedia</option>
+                <option value="tersedia" <?php if($status_barang == 1) echo "selected"; ?>>Tersedia</option>
+                <option value="tidak-tersedia" <?php if($status_barang == 0) echo "selected"; ?>>Tidak Tersedia
+                </option>
             </select>
         </div>
 
