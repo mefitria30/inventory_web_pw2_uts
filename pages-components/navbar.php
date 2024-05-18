@@ -1,3 +1,6 @@
+<?php 
+ob_start();
+?>
 <!-- Page Wrapper -->
 <div id="wrapper">
 
@@ -41,7 +44,8 @@
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Menu</h6>
-                    <a class="collapse-item" href="<?php echo BASE_URL."index.php?page=master-data";?>">Master Data</a>
+                    <a class="collapse-item" href="<?php echo BASE_URL."index.php?page=master-data";?>">Master
+                        Data</a>
                     <a class="collapse-item" href="<?php echo BASE_URL."index.php?page=transaction";?>">Transaction</a>
                 </div>
             </div>

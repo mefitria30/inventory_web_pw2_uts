@@ -1,5 +1,4 @@
 <?php
-
 include_once("./function/helper.php");
 include_once("./function/connection.php");
 include_once("./pages-components/header.php");
@@ -15,3 +14,4 @@ if(file_exists($pagesTrack)) {
 }
 
 include_once("./pages-components/footer.php");
+exit;

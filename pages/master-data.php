@@ -1,8 +1,26 @@
 <?php
+ob_start();
 
 // Query untuk mengambil data dari tabel Barang
-$sql = "SELECT * FROM master_data";
-$result = $conn->query($sql);
+    $sql = "SELECT * FROM master_data";
+    $result = $conn->query($sql);
+    
+    if(isset($_GET['action'])){
+        $action = $_GET['action'];
+    } else {
+        $action = "";
+    }
+
+// delete barang
+    if($action == 'delete'){
+        $id_barang     = $_GET['id_barang'];
+
+        $sqlDelete = "delete from master_data where id_barang = '$id_barang'";
+        $startDelete = mysqli_query($conn, $sqlDelete);
+
+        header("location:".BASE_URL."index.php?page=master-data");
+        
+    }   
 ?>
 
 <div class="container-fluid">
@@ -49,12 +67,14 @@ $result = $conn->query($sql);
                         <td><?php echo $row["harga_beli"]?></td>
                         <td><?php echo $status_barang?></td>
                         <td>
-                            <a href="index.php?op=edit&id=<?php echo $row["id_barang"]?>">
+                            <a href="<?php echo BASE_URL."index.php?page=master-data&action=edit&id_barang=".$row["id_barang"];?>"
                                 <button type="button" class="btn btn-warning btn-sm">Edit</button>
                             </a>
 
-                            <a href="index.php?op=delete&id=<?php echo $row["id_barang"]?>"
-                                onclick="return confirm('Are you want to delete this data?')">
+
+                            <a href="<?php echo BASE_URL."index.php?page=master-data&action=delete&id_barang=".$row["id_barang"];?>"
+                                onclick="
+                                return confirm('Are you want to delete this data?');">
                                 <button type="button" class="btn btn-danger btn-sm">Hapus</button>
                             </a>
                         </td>
