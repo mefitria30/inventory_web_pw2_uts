@@ -50,12 +50,12 @@ $result = $conn->query($sql);
                         <td><?php echo $status_barang?></td>
                         <td>
                             <a href="index.php?op=edit&id=<?php echo $row["id_barang"]?>">
-                                <button type="button" class="btn btn-warning">Edit</button>
+                                <button type="button" class="btn btn-warning btn-sm">Edit</button>
                             </a>
 
                             <a href="index.php?op=delete&id=<?php echo $row["id_barang"]?>"
                                 onclick="return confirm('Are you want to delete this data?')">
-                                <button type="button" class="btn btn-danger">Hapus</button>
+                                <button type="button" class="btn btn-danger btn-sm">Hapus</button>
                             </a>
                         </td>
                     </tr>
