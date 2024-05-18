@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `master_data` (
   `jumlah_barang` int(10) NOT NULL,
   `satuan_barang` varchar(20) NOT NULL,
   `harga_beli` double NOT NULL,
-  `status_barang` enum('1','0') NOT NULL
+  `status_barang` enum('1','0') NOT NULL,
   PRIMARY KEY (`id_barang`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
