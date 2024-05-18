@@ -1,6 +1,7 @@
 <?php
 
 include_once("./function/helper.php");
+include_once("./function/connection.php");
 include_once("./pages-components/header.php");
 include_once("./pages-components/navbar.php");
 
