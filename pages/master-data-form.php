@@ -42,12 +42,14 @@
 
         if ($kode_barang && $nama_barang && $jumlah_barang && $satuan_barang) {
             if($action == 'edit') {
-                $sqlUpdateProcess = "update mahasiswa set
-                    nim = '$nim',
-                    nama= '$nama',
-                    alamat = '$alamat',
-                    fakultas = '$fakultas'
-                    where id = '$id'
+                $sqlUpdateProcess = "update master_data set
+                    kode_barang = '$kode_barang',
+                    nama_barang= '$nama_barang',
+                    jumlah_barang = '$jumlah_barang',
+                    satuan_barang = '$satuan_barang',
+                    harga_beli = '$harga_beli',
+                    status_barang = '$status_barang'
+                    where id_barang = '$id_barang'
                 ";
                 $startUpdateProcess = mysqli_query($conn, $sqlUpdateProcess);
 
