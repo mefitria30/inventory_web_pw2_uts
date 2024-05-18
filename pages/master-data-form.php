@@ -4,21 +4,28 @@
     } else {
         $action = "";
     }
+
+    $id_barang          = '';
+    $kode_barang        = '';
+    $nama_barang        = '';
+    $jumlah_barang      = '';
+    $satuan_barang      = '';
+    $harga_beli         = '';
     
     if($action == 'edit') {
-        $id_barang         = $_GET['id_barang'];
+        $id_barang  = $_GET['id_barang'];
         $sqlUpdate  = "select * from master_data where id_barang = '$id_barang'";
 
         $startUpdate = mysqli_query($conn, $sqlUpdate);
         $getData = mysqli_fetch_array($startUpdate);
 
         if ($getData !== null) {
-            $id_barang            = $getData['id_barang'];
-            $kode_barang           = $getData['kode_barang'];
-            $nama_barang         = $getData['nama_barang'];
-            $jumlah_barang       = $getData['jumlah_barang'];
-            $satuan_barang       = $getData['satuan_barang'];
-            $harga_beli       = $getData['harga_beli'];
+            $id_barang          = $getData['id_barang'];
+            $kode_barang        = $getData['kode_barang'];
+            $nama_barang        = $getData['nama_barang'];
+            $jumlah_barang      = $getData['jumlah_barang'];
+            $satuan_barang      = $getData['satuan_barang'];
+            $harga_beli         = $getData['harga_beli'];
         } else {
             $failed     = 'Data not found';
         }
