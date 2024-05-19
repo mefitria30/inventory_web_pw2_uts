@@ -72,14 +72,11 @@ ob_start();
                         <td><?php echo $status_barang?></td>
                         <td>
                             <a href="<?php echo BASE_URL."index.php?page=master-data-form&action=edit&id_barang=".$row["id_barang"];?>"
-                                <button type="button" class="btn btn-warning btn-sm">Edit</button>
-                            </a>
+                                class="badge badge-info">Edit</a>
 
                             <a href="<?php echo BASE_URL."index.php?page=master-data&action=delete&id_barang=".$row["id_barang"];?>"
-                                onclick="
-                                return confirm('Are you want to delete this data?');">
-                                <button type="button" class="btn btn-danger btn-sm">Hapus</button>
-                            </a>
+                                class="badge badge-danger" onclick="
+                                return confirm('Are you want to delete this data?');">Hapus</a>
                         </td>
                     </tr>
                     <?php }?>
