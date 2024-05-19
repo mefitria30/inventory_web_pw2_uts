@@ -42,7 +42,7 @@ ob_start();
             <table id="example" class="table table-striped table-bordered" style="width:100%">
                 <thead>
                     <tr>
-                        <th>ID Barang</th>
+                        <th>No.</th>
                         <th>Kode Barang</th>
                         <th>Nama Barang</th>
                         <th>Jumlah Barang</th>
@@ -53,13 +53,17 @@ ob_start();
                     </tr>
                 </thead>
                 <tbody>
-                    <?php while ($row = $result->fetch_assoc()) {
+
+                    <?php 
+                        $no = 1;
+                        while ($row = $result->fetch_assoc()) {
 
                         // Perbarui status barang menjadi "Not Available" jika jumlah barang = 0
                         $status_barang = ($row["jumlah_barang"] != 0 && $row["status_barang"] != 0 ) ? 'Available' : 'Not Available';
+                        
                     ?>
                     <tr>
-                        <td><?php echo $row["id_barang"]?></td>
+                        <td><?php echo $no++; ?>.</td>
                         <td><?php echo $row["kode_barang"]?></td>
                         <td><?php echo $row["nama_barang"]?></td>
                         <td><?php echo $row["jumlah_barang"]?></td>
