@@ -18,7 +18,11 @@ ob_start();
         $sqlDelete = "delete from master_data where id_barang = '$id_barang'";
         $startDelete = mysqli_query($conn, $sqlDelete);
 
-        header("location:".BASE_URL."index.php?page=master-data");
+        if($startDelete){
+            header("location:".BASE_URL."index.php?page=master-data&act=1&rule=delete");
+        } else {
+            header("location:".BASE_URL."index.php?page=master-data&act=0&rule=delete");
+        }
         
     }   
 ?>
@@ -37,6 +41,19 @@ ob_start();
                     class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                         class="fas fa-plus fa-sm text-white-50"></i> Add Master Data</a>
             </div>
+
+            <?php if ( isset($_GET['act'])){ ?>
+            <div class="alert alert-info alert-dismissible fade show" role="alert">
+                <?php if ($_GET['act'] == 1) {?>
+                Successfully <?php echo $_GET['rule']?> data
+                <?php } else { ?>
+                Failed <?php echo $_GET['rule']?> data
+                <?php } ?>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <?php } ?>
         </div>
         <div class="card-body">
             <table id="example" class="table table-striped table-bordered" style="width:100%">

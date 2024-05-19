@@ -52,17 +52,45 @@
             ";
             $startUpdateProcess = mysqli_query($conn, $sqlUpdateProcess);
 
-            header("location:".BASE_URL."index.php?page=master-data");
+            if($startUpdateProcess){
+                header("location:".BASE_URL."index.php?page=master-data&act=1&rule=update");
+            } else {
+                header("location:".BASE_URL."index.php?page=master-data&act=0&rule=update");
+            }
         } else {
-            $sqlInsert  = "insert into master_data (
-                kode_barang, nama_barang, jumlah_barang, satuan_barang, harga_beli, status_barang
-            ) values (
-                '$kode_barang', '$nama_barang', '$jumlah_barang', '$satuan_barang', '$harga_beli', '$status_barang'
-            )";
+            $sqlFind = mysqli_query($conn, "SELECT * FROM master_data WHERE nama_barang LIKE '%$nama_barang%'");
+            $getDataOld = mysqli_fetch_array($sqlFind);
 
-            $startInsert = mysqli_query($conn, $sqlInsert);
+            if(mysqli_num_rows($sqlFind) != 0) {
+                $newJumlahBarang = $getDataOld['jumlah_barang'] + $jumlah_barang;
 
-            header("location:".BASE_URL."index.php?page=master-data");
+                $sqlUpdateJumlahBarang = "update master_data set
+                    jumlah_barang = '$newJumlahBarang'
+                    where nama_barang= '$nama_barang'
+                ";
+                
+                $startUpdateJumlahBarang = mysqli_query($conn, $sqlUpdateJumlahBarang);
+
+                if($startUpdateJumlahBarang){
+                    header("location:".BASE_URL."index.php?page=master-data&act=1&rule=update");
+                } else {
+                    header("location:".BASE_URL."index.php?page=master-data&act=0&rule=update");
+                }
+            } else {
+                $sqlInsert  = "insert into master_data (
+                    kode_barang, nama_barang, jumlah_barang, satuan_barang, harga_beli, status_barang
+                ) values (
+                    '$kode_barang', '$nama_barang', '$jumlah_barang', '$satuan_barang', '$harga_beli', '$status_barang'
+                )";
+
+                $startInsert = mysqli_query($conn, $sqlInsert);
+                
+                if($startInsert){
+                    header("location:".BASE_URL."index.php?page=master-data&act=1&rule=insert");
+                } else {
+                    header("location:".BASE_URL."index.php?page=master-data&act=0&rule=insert");
+                }
+            }
         }
     }
 ?>
@@ -86,14 +114,14 @@
 
         <div class="form-group">
             <label for="kode_barang">Kode Barang:</label>
-            <input type="text" class="form-control" id="kode_barang" name="kode_barang" pattern="[a-zA-Z0-9]{1,20}"
-                value="<?php echo $kode_barang ?>" title="Max 20 characters">
+            <input type="text" class="form-control" id="kode_barang" name="kode_barang"
+                value="<?php echo $kode_barang ?>" required>
         </div>
 
         <div class="form-group">
             <label for="nama_barang">Nama Barang:</label>
             <input type="text" class="form-control" id="nama_barang" name="nama_barang"
-                value="<?php echo $nama_barang ?>" pattern="[a-zA-Z0-9\s]{1,50}" title="Max 50 characters">
+                value="<?php echo $nama_barang ?>" required>
         </div>
 
         <div class="form-group">
