@@ -59,7 +59,7 @@ ob_start();
                         while ($row = $result->fetch_assoc()) {
 
                         // Perbarui status barang menjadi "Not Available" jika jumlah barang = 0
-                        $status_barang = ($row["jumlah_barang"] != 0 && $row["status_barang"] != 0 ) ? 'Available' : 'Not Available';
+                        $status_barang = ($row["jumlah_barang"] == 0 ) ?  'Out of Stock'  : ($row["status_barang"] == 1 ? 'Available' : 'Not Available');
                         
                     ?>
                     <tr>
