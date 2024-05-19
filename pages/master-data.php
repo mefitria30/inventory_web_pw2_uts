@@ -89,11 +89,12 @@ ob_start();
                         <td><?php echo $status_barang?></td>
                         <td>
                             <a href="<?php echo BASE_URL."index.php?page=master-data-form&action=edit&id_barang=".$row["id_barang"];?>"
-                                class="badge badge-info">Edit</a>
+                                class="badge badge-info"><i class="fa fa-pen"></i> Edit</a>
 
                             <a href="<?php echo BASE_URL."index.php?page=master-data&action=delete&id_barang=".$row["id_barang"];?>"
                                 class="badge badge-danger" onclick="
-                                return confirm('Are you want to delete this data?');">Hapus</a>
+                                return confirm('Are you want to delete this data?');"><i class="fa fa-trash"></i>
+                                Hapus</a>
                         </td>
                     </tr>
                     <?php }?>
