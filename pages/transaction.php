@@ -61,7 +61,7 @@ if(isset($_POST['submit'])) {
 
                     // Jika jumlah barang cukup, kurangi jumlah barang dari tabel barang
 
-                    $sql = "UPDATE Master_data SET jumlah_barang = jumlah_barang - $jumlah WHERE id_barang = '$id_barang'";
+                    $sql = "UPDATE master_data SET jumlah_barang = jumlah_barang - $jumlah WHERE id_barang = '$id_barang'";
 
                     if ($conn->query($sql) === TRUE) {
                         // Jika transaksi berhasil ditambahkan, atur notifikasi sukses dan arahkan ke halaman review
